@@ -1,0 +1,3 @@
+newsdata:
+  rooturl: https://newsdata.io/api/1
+  apikey:
