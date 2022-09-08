@@ -15,9 +15,6 @@ import java.util.Objects;
 @Service
 public class NewsDataService {
 
-    @Value("${newsData.rootUrl}")
-    private String rootUrl;
-
     @Value("${newsData.apiKey}")
     private String apikey;
 
