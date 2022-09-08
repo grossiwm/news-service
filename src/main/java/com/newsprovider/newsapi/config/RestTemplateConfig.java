@@ -10,7 +10,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 @Configuration
 public class RestTemplateConfig {
 
-    @Value("${newsdata.rooturl}")
+    @Value("${newsData.rootUrl}")
     private String rootUrl;
 
     @Bean

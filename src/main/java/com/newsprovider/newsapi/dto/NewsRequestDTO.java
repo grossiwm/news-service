@@ -1,3 +1,5 @@
 package com.newsprovider.newsapi.dto;
 
-public record NewsRequestDTO(String language, String country, String category, String keywords, String page) {}
+import java.util.List;
+
+public record NewsRequestDTO(String language, String country, List<String> category, String keywords, String page) {}
