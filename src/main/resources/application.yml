@@ -1,4 +1,3 @@
 newsData:
   rootUrl: https://newsdata.io/api/1
   apiKey:
-server.port: 8081
