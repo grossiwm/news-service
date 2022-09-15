@@ -27,3 +27,23 @@ jobs:
         with:
           name: project_jar
           path: ${{ github.workspace }}/target/newsapi-0.0.1-SNAPSHOT.jar
+  docker:
+    runs-on: ubuntu-18.04
+    needs: [ test ]
+    env:
+      REPO: ${{ secrets.DOCKER_REPO }}
+    steps:
+      - uses: actions/checkout@v1
+      - name: Download jar
+        uses: actions/download-artifact@v3
+        with:
+          name: project_jar
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }}
+          -p ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build Docker image
+        run: docker build --build-arg DD_API_KEY=${{ secrets.DATADOG_API_KEY }} -t $REPO:latest -t $REPO:${GITHUB_SHA::8} .
+      - name: Publish Docker image with commit sha tag
+        run: docker push $REPO:${GITHUB_SHA::8}
+      - name: Publish Docker image with tag latest
+        run: docker push $REPO:latest
